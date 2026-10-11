@@ -1,23 +1,44 @@
-import { useEffect, useState } from "react";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Navigate
+} from "react-router-dom";
+
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
-    const [message, setMessage] = useState("");
-
-    useEffect(() => {
-        fetch("http://localhost:5000/")
-            .then((response) => response.json())
-            .then((data) => {
-                setMessage(data.message);
-            })
-            .catch((error) => {
-                console.error("Error connecting to server:", error);
-            });
-    }, []);
-
     return (
-        <div>
-            <h1>{message || "Connecting to HomeKeep..."}</h1>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route
+                    path="/"
+                    element={<Navigate to="/dashboard" />}
+                />
+
+                <Route
+                    path="/login"
+                    element={<Login />}
+                />
+
+                <Route
+                    path="/register"
+                    element={<Register />}
+                />
+
+                <Route
+                    path="/dashboard"
+                    element={
+                        <ProtectedRoute>
+                            <Dashboard />
+                        </ProtectedRoute>
+                    }
+                />
+            </Routes>
+        </BrowserRouter>
     );
 }
 
