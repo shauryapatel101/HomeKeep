@@ -5,6 +5,7 @@ const db = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const householdRoutes = require("./routes/householdRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
+const itemRoutes = require("./routes/itemRoutes");
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/households", householdRoutes);
+app.use("/api/items", itemRoutes);
 app.use("/api/categories", categoryRoutes);
 
 app.get("/", (req, res) => {
