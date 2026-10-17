@@ -7,6 +7,7 @@ import {
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -17,21 +18,22 @@ function App() {
                     path="/"
                     element={<Navigate to="/dashboard" />}
                 />
+
                 <Route
                     path="/login"
                     element={<Login />}
                 />
+
                 <Route
                     path="/register"
                     element={<Register />}
                 />
+
                 <Route
                     path="/dashboard"
                     element={
                         <ProtectedRoute>
-                            <div className="flex items-center justify-center min-h-screen text-slate-700">
-                                Dashboard loading...
-                            </div>
+                            <Dashboard />
                         </ProtectedRoute>
                     }
                 />
